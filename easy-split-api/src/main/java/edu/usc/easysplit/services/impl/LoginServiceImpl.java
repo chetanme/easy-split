@@ -13,13 +13,14 @@ import edu.usc.easysplit.LoginRequest;
 import edu.usc.easysplit.LoginResponse;
 import edu.usc.easysplit.SplitGroup;
 import edu.usc.easysplit.SplitUser;
+import edu.usc.easysplit.services.ICacheManager;
 import edu.usc.easysplit.services.ILoginService;
 
 @Service
 public class LoginServiceImpl implements ILoginService {
 
 	@Autowired
-	private CacheManagerImpl cacheService;
+	private ICacheManager cacheService;
 	
 	@Override
 	public LoginResponse loginUser (LoginRequest request) {

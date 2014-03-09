@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import edu.usc.easysplit.AddBillRequest;
+import edu.usc.easysplit.AddBillResponse;
 import edu.usc.easysplit.GroupRequest;
 import edu.usc.easysplit.GroupResponse;
 import edu.usc.easysplit.LoginRequest;
 import edu.usc.easysplit.LoginResponse;
+import edu.usc.easysplit.services.IBillService;
 import edu.usc.easysplit.services.IGroupService;
 import edu.usc.easysplit.services.ILoginService;
 
@@ -25,6 +28,9 @@ public class EasySplitContoroller {
 	
 	@Autowired
 	private IGroupService groupService;
+	
+	@Autowired
+	private IBillService billService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
@@ -42,5 +48,11 @@ public class EasySplitContoroller {
 	@ResponseBody
 	public GroupResponse alterGroup (@RequestBody GroupRequest request, HttpServletResponse httpResponse) {
 		return this.groupService.alterGroup(request);
+	}
+	
+	@RequestMapping(value = "/addBill", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public AddBillResponse addBill (@RequestBody AddBillRequest request, HttpServletResponse httpResponse) {
+		return this.billService.addBill(request);
 	}
 }

@@ -11,13 +11,14 @@ import edu.usc.easysplit.GroupRequest;
 import edu.usc.easysplit.GroupResponse;
 import edu.usc.easysplit.SplitGroup;
 import edu.usc.easysplit.SplitUser;
+import edu.usc.easysplit.services.ICacheManager;
 import edu.usc.easysplit.services.IGroupService;
 
 @Service
 public class GroupServiceImpl implements IGroupService {
 	
 	@Autowired
-	private CacheManagerImpl cacheService;
+	private ICacheManager cacheService;
 
 	@Override
 	public GroupResponse createGroup (GroupRequest request) {
