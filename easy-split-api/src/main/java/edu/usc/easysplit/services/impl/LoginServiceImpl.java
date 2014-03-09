@@ -49,7 +49,7 @@ public class LoginServiceImpl implements ILoginService {
 			
 			List<SplitGroup> listOfGroups = new ArrayList<SplitGroup>();
 			for (Integer eachGroupId : thisUser.getPartOf()) {
-				listOfGroups.add((SplitGroup) this.cacheService.getValue(Constants.ALL_GROUPS, eachGroupId));
+				listOfGroups.add((SplitGroup) this.cacheService.getValue(Constants.ALL_GROUPS, Integer.toString(eachGroupId.intValue())));
 			}
 			response.setMemberOf(listOfGroups);
 			response.setSuccess(true);

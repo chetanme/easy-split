@@ -37,4 +37,10 @@ public class EasySplitContoroller {
 	public GroupResponse createGroup (@RequestBody GroupRequest request, HttpServletResponse httpResponse) {
 		return this.groupService.createGroup(request);
 	}
+	
+	@RequestMapping(value = "/alterGroup", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public GroupResponse alterGroup (@RequestBody GroupRequest request, HttpServletResponse httpResponse) {
+		return this.groupService.alterGroup(request);
+	}
 }

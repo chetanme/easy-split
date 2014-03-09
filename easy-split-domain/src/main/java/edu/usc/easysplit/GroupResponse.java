@@ -9,6 +9,8 @@ public class GroupResponse implements Serializable {
 	private SplitGroup thisGroup;
 
 	private boolean success;
+	
+	private String failMsg;
 
 	public SplitGroup getThisGroup() {
 		return thisGroup;
@@ -24,5 +26,13 @@ public class GroupResponse implements Serializable {
 
 	public void setSuccess(boolean success) {
 		this.success = success;
+	}
+
+	public String getFailMsg() {
+		return failMsg;
+	}
+
+	public void setFailMsg(String failMsg) {
+		this.failMsg = failMsg;
 	}
 }

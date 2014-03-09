@@ -26,9 +26,8 @@
 	
 	<context:component-scan base-package="edu.usc.easysplit" />
 	
-	
 	<beans:bean id="jedisFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:hostName="localhost" p:port="6379" />
+		p:hostName="easyapiredis.com" p:port="6379" />
 	
 	<beans:bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
 		p:connection-factory-ref="jedisFactory">

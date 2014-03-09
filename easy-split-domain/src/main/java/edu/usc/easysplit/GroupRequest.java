@@ -1,8 +1,6 @@
 package edu.usc.easysplit;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 
@@ -17,7 +15,7 @@ public class GroupRequest implements Serializable {
 	
 	private String groupName;
 	
-	private List<String> members = new ArrayList<String>();
+	private String memberName;
 
 	public int getGroupId() {
 		return groupId;
@@ -43,11 +41,11 @@ public class GroupRequest implements Serializable {
 		this.groupName = groupName;
 	}
 
-	public List<String> getMembers() {
-		return members;
+	public String getMemberName() {
+		return memberName;
 	}
 
-	public void setMembers(List<String> members) {
-		this.members = members;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 }
