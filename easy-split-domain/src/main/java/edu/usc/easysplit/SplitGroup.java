@@ -17,7 +17,7 @@ public class SplitGroup implements Serializable {
 	
 	private String owner;
 	
-	private Map<String, Integer> stats = new HashMap<String, Integer>();
+	private Map<String, Double> stats = new HashMap<String, Double>();
 
 	public int getGroupId() {
 		return groupId;
@@ -43,11 +43,11 @@ public class SplitGroup implements Serializable {
 		this.owner = owner;
 	}
 
-	public Map<String, Integer> getStats() {
+	public Map<String, Double> getStats() {
 		return stats;
 	}
 
-	public void setStats(Map<String, Integer> stats) {
+	public void setStats(Map<String, Double> stats) {
 		this.stats = stats;
 	}
 }

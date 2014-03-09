@@ -34,8 +34,8 @@ public class GroupServiceImpl implements IGroupService {
 		newGroup.setGroupName(request.getGroupName());
 		newGroup.setOwner(request.getOwner());
 		
-		Map<String, Integer> stats = new HashMap<String, Integer>();
-		stats.put(request.getOwner(), 0);
+		Map<String, Double> stats = new HashMap<String, Double>();
+		stats.put(request.getOwner(), 0.0);
 		newGroup.setStats(stats);
 		
 		if (!this.cacheService.hasMapKey(Constants.ALL_GROUPS)) {
@@ -64,10 +64,21 @@ public class GroupServiceImpl implements IGroupService {
 			if (!this.cacheService.hasValueForKeys(Constants.ALL_GROUPS, Integer.toString(request.getGroupId()))) {
 				response.setSuccess(false);
 				response.setFailMsg("No group with this id");
+			} if (!this.cacheService.hasValueForKeys(Constants.ALL_USERS, request.getMemberName())) {
+				response.setSuccess(false);
+				response.setFailMsg("No member with this name");
 			} else {
-				Map<Integer, SplitGroup> allGroups = new HashMap<Integer, SplitGroup>();
-				//allGroups.put(0, newGroup);
-				this.cacheService.storeMap(Constants.ALL_GROUPS, allGroups);
+				SplitGroup group = (SplitGroup) this.cacheService.getValue(Constants.ALL_GROUPS, Integer.toString(request.getGroupId()));
+				SplitUser member = (SplitUser) this.cacheService.getValue(Constants.ALL_USERS, request.getMemberName());
+				
+				group.getStats().put(request.getMemberName(), 0.0);
+				member.getPartOf().add(request.getGroupId());
+				
+				this.cacheService.storeValue(Constants.ALL_GROUPS, Integer.toString(request.getGroupId()), group);
+				this.cacheService.storeValue(Constants.ALL_USERS, request.getMemberName(), member);
+				
+				response.setThisGroup(group);
+				response.setSuccess(true);
 			}
 		} else {
 			response.setSuccess(false);
@@ -81,5 +92,4 @@ public class GroupServiceImpl implements IGroupService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

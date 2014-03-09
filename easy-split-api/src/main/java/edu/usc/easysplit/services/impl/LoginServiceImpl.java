@@ -35,15 +35,13 @@ public class LoginServiceImpl implements ILoginService {
 			
 			this.cacheService.storeMap(Constants.ALL_USERS, userMap);
 			response.setSuccess(true);
-		} else if (request.isNewUser() && !this.cacheService.hasValueForKeys(Constants.ALL_USERS, request.getUserName())) {
+		} else if (!this.cacheService.hasValueForKeys(Constants.ALL_USERS, request.getUserName())) {
 			SplitUser newUser = new SplitUser();
 			newUser.setName(request.getUserName());
 			newUser.setBalance(0);
 			
 			this.cacheService.storeValue(Constants.ALL_USERS, request.getUserName(), newUser);
 			response.setSuccess(true);
-		} else if (request.isNewUser()) {
-			response.setSuccess(false);
 		} else {
 			SplitUser thisUser = (SplitUser) this.cacheService.getValue(Constants.ALL_USERS, request.getUserName());
 			
